@@ -1,26 +1,18 @@
-import PropTypes from 'prop-types';
-import ListGroup from 'react-bootstrap/ListGroup';
+import React from 'react';
+import '../css/list.css';
 
-function List({ list, clickHandler }) {
+const List = ({ users, onUserClick }) => {
   return (
-    <ListGroup>
-      {list.map(elem =>
-        <ListGroup.Item 
-          key={elem.id}
-          data-id={elem.id}
-          action
-          onClick={clickHandler}
-        >
-          {elem.name}
-        </ListGroup.Item>
-      )}
-    </ListGroup>
-  )
-}
-
-List.propTypes = {
-  list: PropTypes.array,
-  clickHandler: PropTypes.func,
+    <div className="list">
+      <ul>
+        {users.map(user => (
+          <li key={user.id} onClick={() => onUserClick(user)}>
+            {user.name}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export default List;
